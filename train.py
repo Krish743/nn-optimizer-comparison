@@ -110,7 +110,6 @@ if __name__ == "__main__":
     results = {}
 
     for name, lr in EXPS.items():
-        if name == "RMSprop":
-            results[name] = train_optim(name, lr)
+        results[name] = train_optim(name, lr)
 
     print("\n Khatam Hogyaa!!!!")
