@@ -45,6 +45,6 @@ for file in os.listdir(RESULTS_DIR):
 plt.xlabel("Epochs")
 plt.ylabel("Test Accuracy")
 plt.title("Test Accuracy vs Epochs")
-plt.yscale("log")
+# plt.yscale("log")
 plt.legend()
 plt.show()
