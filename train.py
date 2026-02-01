@@ -67,6 +67,14 @@ def train_optim(name, lr):
     model = NN(num_features = 784).to(device)
     optimizer = get_optimizer(name, model, lr)
 
+    scheduler = None
+    if name in ["SGD", "Momentum", "NAG"]:
+        scheduler = torch.optim.lr_scheduler.StepLR(
+            optimizer,
+            step_size=30,
+            gamma=0.1
+        )
+
     train_losses = []
     test_losses = []
     test_accuracies = []
@@ -96,7 +104,11 @@ def train_optim(name, lr):
         test_losses.append(test_loss)
         test_accuracies.append(test_acc)
 
-        logger(name, epoch+1, avg_loss, test_loss, test_acc, lr)
+        if scheduler is not None:
+            scheduler.step()
+        
+        current_lr = optimizer.param_groups[0]["lr"]
+        logger(name, epoch+1, avg_loss, test_loss, test_acc, current_lr)
 
         print(
                 f"{name} | Epoch {epoch+1} | Train Loss {avg_loss:.4f} | Test acc {test_acc:.4f}"

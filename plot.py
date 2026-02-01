@@ -31,7 +31,7 @@ for file in os.listdir(RESULTS_DIR):
 plt.xlabel("Epoch")
 plt.ylabel("Training Loss")
 plt.title("Training Loss vs Epoch")
-plt.yscale("log")
+# plt.yscale("log")
 plt.legend()
 plt.show()
 
