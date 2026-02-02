@@ -21,6 +21,6 @@ def get_optimizer(name, model, lr):
     elif name == "Adagrad":
         return optim.Adagrad(model.parameters(), lr=lr)
     elif name == "AdamW":
-        return optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-2)
+        return optim.AdamW(model.parameters(), lr=lr)
     else:
         raise ValueError(f"Unknown optimizer: {name}")
